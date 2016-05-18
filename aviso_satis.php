@@ -54,7 +54,9 @@ $PAGE->set_pagelayout('incourse');
 // Show the page header
 echo $OUTPUT->header();
 
-echo '<br><br><br><br><center><h2>¡Tu proyecto ha sido agregado satisfactoriamente!</h2></center>';
+echo '<br><br><br><br><center><h2>¡Tu proyecto ha sido agregado satisfactoriamente!</h2></center>
+		<form name="boton_volver" action="inicio.php" method="POST">
+		<center><input type="submit"    value="Volver" /></form></center>';   
 
 
 

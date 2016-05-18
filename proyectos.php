@@ -55,9 +55,10 @@ $PAGE->set_pagelayout('incourse');
 echo $OUTPUT->header();
 
 //Página donde hay botones para poder ver y agregar proyectos.
-echo '<form action="proyectos.php" method="post" enctype="multipart/form-data">
-		<input type="submit"   value="Ver Proyectos" /><br>
-        <input type="submit"   value="Agregar Proyectos" />';   
+echo '<form action="ver_proyectos.php" method="post" >
+		<input type="submit"   value="Ver Proyectos" /></form><br>
+        <form name="boton_agregar" action="agregar_proyectos.php" method="POST">
+		<input type="submit"    value="Agregar Proyectos" /></form>';   
 
 
 

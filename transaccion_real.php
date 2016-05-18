@@ -19,7 +19,7 @@ echo $OUTPUT->header();
 
 echo '<br><br><br><br><center><h2>¡Gracias por tu aporte!</h2></center>
 <center><p><input name=volver type="button" value="Volver" /></p></center>
-		<center><p><input name=volver type="button" value="Volver" /></p></center>
+		
 		'
 ;
 

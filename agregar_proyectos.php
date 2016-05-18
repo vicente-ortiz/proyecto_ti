@@ -55,7 +55,7 @@ $PAGE->set_pagelayout('incourse');
 echo $OUTPUT->header();
 
 //Formulario para agregar un proyecto
-echo'<form action="guardarproyecto.php" method="post" enctype="multipart/form-data">
+echo'<form action="aviso_satis.php" method="post" enctype="multipart/form-data">
 <table>
 <tr><td>Nombre del proyecto: </td><td><input type="text" name="nombre" />*</td></tr>
 <tr><td>Categoria: </td><td><select>
@@ -69,9 +69,14 @@ echo'<form action="guardarproyecto.php" method="post" enctype="multipart/form-da
 </select>*</td></tr>
 		<tr><td>Telefono del contacto: </td><td><input type="text" name="telefono" />*</td></tr>
 		<tr><td>Monto requerido: </td><td><input type="text" name="monto" />*</td></tr>
+		<tr><td>Detalles del proyecto:</td><td>
+	<textarea rows="3" name="detalles_proyecto"></textarea>
+
+	</td>
+</tr>
 		 <tr><td></td><td><p><input name=enviardatos type="submit" /></p></td><td></td></tr>
 		<tr><td></td><td> *Campos obligatorios </td></tr>
-		<tr><td></td><td> *Campos obligatorios </td></tr>
+		
 		</table>';
 
 // Show the page footer

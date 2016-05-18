@@ -9,9 +9,7 @@
 <table>		
 <tr>
 <td><h4>Hola, Vicente </h4> </td>
-<td><a href='newfile1.php'>INICIO</a></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<td><a href='proyectos.php'>PROYECTOS</a></td>
-		</tr>
+
 </table>
 
 
