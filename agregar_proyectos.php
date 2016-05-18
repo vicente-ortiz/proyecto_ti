@@ -75,7 +75,7 @@ echo'<form action="aviso_satis.php" method="post" enctype="multipart/form-data">
 	</td>
 </tr>
 		 <tr><td></td><td><p><input name=enviardatos type="submit" /></p></td><td></td></tr>
-		<tr><td></td><td> *Campos obligatorios </td></tr>
+		<tr><td> </td><td> *Campos obligatorios </td></tr>
 		
 		</table>';
 
