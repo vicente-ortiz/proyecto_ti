@@ -68,8 +68,10 @@ echo'<form action="guardarproyecto.php" method="post" enctype="multipart/form-da
 		<option value="tecnología">Tecnologia</option>
 </select>*</td></tr>
 		<tr><td>Telefono del contacto: </td><td><input type="text" name="telefono" />*</td></tr>
+		<tr><td>Monto requerido: </td><td><input type="text" name="monto" />*</td></tr>
 		 <tr><td></td><td><p><input name=enviardatos type="submit" /></p></td><td></td></tr>
- </table>';
+		<tr><td></td><td> *Campos obligatorios </td></tr>
+		</table>';
 
 // Show the page footer
 echo $OUTPUT->footer();

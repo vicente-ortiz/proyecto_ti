@@ -5,8 +5,14 @@
 </head>
 <body>
 
-<h1>FINANCIA TUS SUENOS E INVIERTE EN EL FUTURO</h1> 
-<h4>Hola, Vicente </h4>
+<td><h1>FINANCIA TUS SUENOS E INVIERTE EN EL FUTURO</h1></td>
+<table>		
+<tr>
+<td><h4>Hola, Vicente </h4> </td>
+<td><a href='newfile1.php'>INICIO</a></td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<td><a href='proyectos.php'>PROYECTOS</a></td>
+		</tr>
+</table>
 
 
 
