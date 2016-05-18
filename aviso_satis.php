@@ -4,13 +4,12 @@
 <head>
 <title>Proyecto GIR</title>
 </head>
-<body>
-
+<body background="portada4.png">
 
 <tr>
 
 		<td><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		FINANCIA TUS SUENOS E INVIERTE EN EL FUTURO.</h1></td>
+		CROWDFUNDING PARA PROYECTOS</h1></td>
 		
 		<td><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		Hola, Vicente </h4>
@@ -21,8 +20,6 @@
 		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href='proyectos.php'>PROYECTOS</a></td>
 </tr>
-
-
 
 
 

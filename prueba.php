@@ -1,74 +1,56 @@
+<?php
+// The number of lines in front of config file determine the // hierarchy of files.
+require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
+require_login();
+//Global
+$nanmeav = "Planificación Adaptativa"; // name that appears in the browser tab
+$name = "Planificación Adaptativa"; // name of the website
+$PAGE->set_context(get_system_context());
+$PAGE->set_pagelayout('admin');
+$PAGE->set_title($nameav);
+echo " <img src='logo.png'style='width:1060px;height:250px;' align='right'>";
+$PAGE->set_url($CFG->wwwroot.'/local/Minor/calendario2.php');
+$PAGE->navbar->add($name);
+echo $OUTPUT->header();
+include 'templates/header.php';
+// Actual content goes here
+global $DB; //conection to moodle database
+global $USER; //conetion to moodle user database
+$userconnected= $USER->username; //$userconnected is the username of the user who is connected 
+$username= $DB->get_record('user', array('username'=>$userconnected)); //$username gets the fist name of the user who is connected
+       //from the table 'user' of Moodle's database 
+echo " <font color='#1F968D' size=6 > ¡Hola  $username->firstname !</font><br><br><br> "; //shows a mesaage next to the fist name of the
+//user connected
+?>
+
+
+
 <html>
-<html>
-<head>
-<title>Proyecto GIR</title>
-</head>
 <body>
 
+<br>
 
-<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		FINANCIA TUS SUENOS E INVIERTE EN EL FUTURO.</h1>
-		<table><tr>
-		<td><h4>
-		Hola, Vicente </h4></td><td>                  </td>                                       <td></td>
-		<td><a href='inicio.php'>INICIO</a></td>
+<div align="right">
 
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href='proyectos.php'>PROYECTOS</a></td>
-</tr>
-</table>
-
-
+<form action="horario.php" method="post"> <!-- button that redirect to the schedule page -->
+<input type="submit" value="Horario">
+</form>
+<br>
+<br>
+<form action="calendario.php" method="post"> <!-- button that redirect to the calendar page -->
+<input type="submit" value="Calendario">
+</form>
+<br>
+<br>
+<form action="asignaturas.php" method="post"> <!-- button that redirect to the activity page -->
+<input type="submit" value="Asignaturas">
+</div>
+</form>
 </body>
 </html>
+
+
+
 <?php
-
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software  Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-/**
- *
- * @package local
- * @subpackage crowfounding
- * @copyright 2012-onwards Vicente Ortiz <vortiz@alumnos.uai.cl>
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-// Minimum for Moodle to work, the basic libraries
-require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
-
-// Parameter passed from the url.
-//$name = required_param('name', PARAM_TEXT);
-
-// Moodle pages require a context, that can be system, course or module (activity or resource)
-$context = context_system::instance();
-$PAGE->set_context($context);
-
-// Check that user is logued in the course.
-require_login();
-
-
-$PAGE->set_pagelayout('incourse');
-
-
-// Show the page header
-echo $OUTPUT->header();
-
-//Tabla que muestra las opciones Inicio y Proyectos en la página de Inicio
-
-
-
-
-// Show the page footer
 echo $OUTPUT->footer();
 ?>
