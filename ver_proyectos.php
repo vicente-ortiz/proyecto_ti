@@ -67,17 +67,23 @@ $PAGE->set_pagelayout('incourse');
 echo $OUTPUT->header();
 
 //Page where are buttons to view and add projects.
-echo '<html>
-		<body>
-			<table>	<td><center>
-				<td><form action="ver_proyectos.php" method="post" >
-		<input type="submit"   value="Ver Proyectos" /></form></td><td></td>
-        
-				<td><form action="agregar_proyectos.php" method="post" >
-				<input type="submit"   value="Agregar Proyectos" /></form></td></center> </td>
-</table>
-</body>
-</html>';
+echo'<form action="aviso_satis.php" method="post" enctype="multipart/form-data">
+<table>
+<tr><td>Categoria: </td><td><select>
+  <option value="select" selected="selected">Selecciona la categoria</option>
+				<option value="animals">Animales</option>
+  <option value="sport">Deportes</option>
+  <option value="ambiental">Medioambiente</option>
+  <option value="energy">Energia</option>
+		<option value="education">Educacion</option>
+		<option value="recreation">Recreacion</option>
+		<option value="tecnhology">Tecnologia</option>
+</select>*</td></tr>
+		
+	 <tr><td></td><td><input type="submit"    value="Buscar" /></td></tr>
+		<tr><td> </td><td> *Campos obligatorios </td></tr>
+
+		</table>';
 
 // Show the page footer
 echo $OUTPUT->footer();

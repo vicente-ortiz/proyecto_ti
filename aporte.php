@@ -25,7 +25,7 @@
 </body>
 </html>
 <?php
-// This file is pa rt of Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -66,18 +66,31 @@ $PAGE->set_pagelayout('incourse');
 // Show the page header
 echo $OUTPUT->header();
 
-//Page where are buttons to view and add projects.
-echo '<html>
-		<body>
-			<table>	<td><center>
-				<td><form action="ver_proyectos.php" method="post" >
-		<input type="submit"   value="Ver Proyectos" /></form></td><td></td>
-        
-				<td><form action="agregar_proyectos.php" method="post" >
-				<input type="submit"   value="Agregar Proyectos" /></form></td></center> </td>
-</table>
-</body>
-</html>';
+//Form to add a project, in the form its necessary to complete with the name of the project, phone, quantity of money, details of the project
+echo'<form action="transaccion_real.php" method="post" enctype="multipart/form-data">
+<table>
+
+<tr><td>Monto: </td><td><select>
+  <option value="select2" selected="selected">- Selecciona -</option>
+				<option value="amount1">5.000</option>
+  <option value="amount2">10.000</option>
+  <option value="amount3">50.000</option>
+  <option value="amount4">100.000</option>
+		<option value="amount5">200.000</option>
+</select>*</td></tr>
+		
+
+	</td>
+</tr>
+		 
+		<tr><td></td><td><input type="submit"    value="Aportar" /></td></tr>
+		<tr><td> </td><td> *Campos obligatorios </td></tr>
+		
+		</table>';
+ 
+
+
+
 
 // Show the page footer
 echo $OUTPUT->footer();

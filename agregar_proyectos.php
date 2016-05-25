@@ -71,7 +71,8 @@ echo'<form action="aviso_satis.php" method="post" enctype="multipart/form-data">
 <table>
 <tr><td>Nombre del proyecto: </td><td><input title="Se necesita un nombre" type="text" name="name" required/>*</td></tr>
 <tr><td>Categoria: </td><td><select>
-  <option value="animals">Animals</option>
+  <option value="select" selected="selected">Selecciona la categoria</option>
+				<option value="animals">Animales</option>
   <option value="sport">Deportes</option>
   <option value="ambiental">Medioambiente</option>
   <option value="energy">Energia</option>
@@ -82,7 +83,7 @@ echo'<form action="aviso_satis.php" method="post" enctype="multipart/form-data">
 		<tr><td>Telefono del contacto: </td><td><input type="tel" name="telephone" required/>*</td></tr>
 		<tr><td>Monto requerido: </td><td><input type="text" name="quantity_money" required/>*</td></tr>
 		<tr><td>Detalles del proyecto:</td><td>
-	<textarea rows="3" name="details_project"></textarea>
+	<textarea rows="5" cols="40" name="details_project"></textarea>
 
 	</td>
 </tr>

@@ -67,15 +67,18 @@ $PAGE->set_pagelayout('incourse');
 echo $OUTPUT->header();
 
 //Form to add a project, in the form its necessary to complete with the name of the project, phone, quantity of money, details of the project
-echo'<form action="aviso_satis.php" method="post" enctype="multipart/form-data">
+echo'<script>
+  function validarSiNumero(numero){
+    if (!/^([0-9])*$/.test(numero))
+      alert("El valor " + numero + " no es un número");
+  }
+</script>
+				<form action="aviso_satis.php" method="post" enctype="multipart/form-data">
 <table>
-<tr><td>Nombre del proyecto: </td><td><input title="Se necesita un nombre" type="text" name="name" />*</td></tr>
-valor = document.getElementById("name").value;
-if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
-  return false;
-}
-				<tr><td>Categoria: </td><td><select>
-  <option value="animals">Animals</option>
+<tr><td>Nombre del proyecto: </td><td><input title="Se necesita un nombre" type="text" name="name" required/>*</td></tr>
+<tr><td>Categoria: </td><td><select>
+  <option value="select" selected="selected">Selecciona la categoria</option>
+				<option value="animals">Animales</option>
   <option value="sport">Deportes</option>
   <option value="ambiental">Medioambiente</option>
   <option value="energy">Energia</option>
@@ -84,9 +87,9 @@ if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
 		<option value="tecnhology">Tecnologia</option>
 </select>*</td></tr>
 		<tr><td>Telefono del contacto: </td><td><input type="tel" name="telephone" required/>*</td></tr>
-		<tr><td>Monto requerido: </td><td><input type="text" name="quantity_money" required/>*</td></tr>
+		<tr><td>Monto requerido: </td><td><input type="text" name="quantity_money" onChange="validarSiNumero(this.value); />*</td></tr>
 		<tr><td>Detalles del proyecto:</td><td>
-	<textarea rows="3" name="details_project"></textarea>
+	<textarea rows="5" cols="40" name="details_project"></textarea>
 
 	</td>
 </tr>
