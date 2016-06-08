@@ -64,29 +64,35 @@ $PAGE->set_pagelayout('incourse');
 
 // Show the page header
 echo $OUTPUT->header();
-if(empty($_POST['selected'])==true){
-	$selected = 'select';
+if(empty($_GET['id'])==true){
+$id=$_POST['id'];
 }else{
-	$selected = $_POST['selected'];
+	$id = $_GET['id'];
 }
+//Conection to DataBase
+$ServerName="localhost";
+$UserName="root";
+$Password="";
+$DBname="moodle";
+$Conn = new mysqli($ServerName,$UserName,$Password,$DBname);
+$Sql1="SELECT `name`,`content`,`needmoney`,`gatheredmoney` FROM `mdl_add_project` WHERE `id` = $id";
+$Result1= $Conn->query($Sql1);
+while($Row = $Result1->fetch_assoc()){
+	$content= $Row["content"];
+	$name = $Row["name"];
+	$money_needed = $Row["needmoney"];
+	$money_gathered = $Row["gatheredmoney"];
+}
+if(empty($_POST['support'])==true){
+	$support = 0;
+}else{
+	$support = $_POST['support'];
+	$money_supported = $support + $money_gathered;
+	$Sql3="UPDATE `mdl_add_project` SET `gatheredmoney`= $money_supported WHERE `id` = $id";
+	$Result3= $Conn->query($Sql3);
+}
+$percentage = 100*(($support + $money_gathered)/$money_needed);
 //Page where are buttons to view and add projects.
-echo"<form action='ver_proyectos.php' method='post' enctype='multipart/form-data'>
-<table>
-<tr><td>Categoria: </td><td><select name='selected'>
-  <option value='select' >Selecciona la categoria</option>
-				<option value='Animales'>Animales</option>
-  <option value='Deportes'>Deportes</option>
-  <option value='Medioambiente'>Medioambiente</option>
-  <option value='Energia'>Energia</option>
-		<option value='Educacion'>Educacion</option>
-		<option value='Recreacion'>Recreacion</option>
-		<option value='Tecnologia'>Tecnologia</option>
-</select>*</td></tr>
-		
-	 <tr><td></td><td><input type='submit'    value='Buscar' /></td></tr>
-
-		</table>";
-if($selected != 'select'){
 	echo "<!DOCTYPE html>
 <html lang='en'>
 <meta charset='utf-8'>
@@ -94,58 +100,41 @@ if($selected != 'select'){
 <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js'></script>
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
-<div class='container'>
-		<h3>Resultados para: $selected</h3><br>";
-	//Conection to DataBase
-	$ServerName="localhost";
-	$UserName="root";
-	$Password="";
-	$DBname="moodle";
-	$Conn = new mysqli($ServerName,$UserName,$Password,$DBname);
-	$Sql1="SELECT `name`,`id`,`category` FROM `mdl_add_project`";
-	$Result1= $Conn->query($Sql1);
-	while($Row = $Result1->fetch_assoc()){
-		$names[]= $Row["name"];
-		$ids[] = $Row["id"];
-		$categorys[]= $Row["category"];
-	}
-	$project_exists =0;
-	foreach($categorys as $category){
-		if($category == $selected){
-			$project_exists=1;
-	}
-}
-if($project_exists == 1){
-	echo"
-		<table class='table table-striped'>
-<thead>
-<tr>
-<th>Proyecto</th>
-<th>Ver Proyecto</th>
-</tr>
-</thead>
-<tbody>";
-for($i=0;$i<count($categorys);$i=$i+1){
-	if($categorys[$i] == $selected){
-		echo "<tr>
-		<td>
-		$names[$i]
-		</td>
-	    <td>
-	    <a href='ver_proyecto.php?id=$ids[$i]'>Mas Informacion</a>
-		</td>
-		</tr>";
-	}
-}
-echo"
-</tbody>
-</table>
+<div class='col-md-8'>
+		<center><h2>$name</h2></center><br>
+		<p>$content</p>
 </div>
+<div class='col-md-4'>
+<br><br><br>
+<h5>Progreso Monetario del proyecto:</h5>
+<br>
+<div class='progress'>
+  <div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width: $percentage%;'>
+    <center>$percentage%</center>
+  </div>
+</div>
+<form action='ver_proyecto.php' method='POST' enctype='multipart/form-data'>
+<table>
+<tr><td><select name='support'>
+  <option value='select' >Seleccione el monto</option>
+				<option value='5000'>5.000</option>
+  <option value='10000'>10.000</option>
+  <option value='50000'>50.000</option>
+  <option value='100000'>100.000</option>
+		<option value='200000'>200.000</option>
+		<option value='250000'>250.000</option>
+		<option value='300000'>300.000</option>
+</select>*</td></tr>
+	 <tr><td><button type='submit' class='btn btn-WARNING'>Aportar</button></td></tr>
+		</table>
+		<input type='hidden' name='id' value='$id'/> 
+		</form>
+</div>
+<form action='contacto.php' method='POST'>
+<button type='submit' class='btn btn-danger'>Contactar</button>
+<input type='hidden' name='id' value='$id'/>
+</form>
 </html>";
-}else{
-	echo "<p>Lo sentimos pero no existen proyectos para esta categoria.</p>";
-}
-}
 // Show the page footer
 echo $OUTPUT->footer();
 ?>

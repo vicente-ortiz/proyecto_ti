@@ -63,16 +63,54 @@ require_login();
 $PAGE->set_pagelayout('incourse');
 
 
-// Show the page header
+// Making Sure information does not already exist o isnt null
+$ok = 0;
 echo $OUTPUT->header();
-
+if(empty($_POST['name'])==FALSE){
+	$name = $_POST['name'];
+	$ok = $ok + 1;
+}
+if(empty($_POST['details']) == false){
+	$content = $_POST['details'];
+	$ok = $ok + 1;
+}
+if(empty($_POST['category']) == false){
+	$category = $_POST['category'];
+	$ok = $ok + 1;
+}
+if(empty($_POST['telephone']) == false && is_numeric($_POST['telephone'])== true ){
+	$phone = $_POST['telephone'];
+	$ok = $ok + 1;
+}
+if(empty($_POST['email'])== false){
+	$email = $_POST['email'];
+	$ok = $ok + 1;
+}
+if(empty($_POST['amount'])== false && is_numeric($_POST['amount'])== true){
+	$needmoney = $_POST['amount'];
+	$ok = $ok + 1;
+}
+//Conection to DataBase
+$ServerName="localhost";
+$UserName="root";
+$Password="";
+$DBname="moodle";
+$Conn = new mysqli($ServerName,$UserName,$Password,$DBname);
+//Finish conection to Database
+//Finding in the database the id to find the name of the question
+//Inserting information
+if($ok == 6){
+$Sql1="INSERT INTO `mdl_add_project`(`name`, `category`, `phone`, `email`, `content`, `needmoney`) VALUES ('$name','$category','$phone','$email','$content','$needmoney')";
+$Result1= $Conn->query($Sql1);
 //This message appear when the proyect its added to the database
 echo '<br><br><br><br><center><h2>¡Tu proyecto ha sido agregado satisfactoriamente!</h2></center>
 		<form name="boton_volver" action="inicio.php" method="POST">
 		<center><input type="submit"    value="Volver" /></form></center>';   
-
-
-
+}else{
+	echo '<br><br><br><br><center><h2>¡No relleno correctamente todos los datos, porfavor intente nuevamente!</h2></center>
+		<form name="boton_volver" action="agregar_proyectos.php" method="POST">
+		<center><input type="submit"    value="Volver" /></form></center>';
+}
 // Here goes the content
 //echo 'Hello world';
 

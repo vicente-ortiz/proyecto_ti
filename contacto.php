@@ -11,7 +11,7 @@
 		CROWDFUNDING PARA PROYECTOS</h1></td>
 		
 		<td><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		Hola, Vicente </h4>
+		Hola, </h4>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		
 		<a href='inicio.php'>INICIO</a></td>
@@ -66,41 +66,32 @@ $PAGE->set_pagelayout('incourse');
 // Show the page header
 echo $OUTPUT->header();
 
-
-include_once 'config.inc.php';
-if (isset($_POST['subir'])) {
-	$nombre = $_FILES['archivo']['name'];
-	$tipo = $_FILES['archivo']['type'];
-	$tamanio = $_FILES['archivo']['size'];
-	$ruta = $_FILES['archivo']['tmp_name'];
-	$destino = "archivos/" . $nombre;
-	if ($nombre != "") {
-		if (copy($ruta, $destino)) {
-			$titulo= $_POST['titulo'];
-			$descri= $_POST['descripcion'];
-			$db=new Conect_MySql();
-			$sql = "INSERT INTO tbl_documentos(titulo,descripcion,tamanio,tipo,nombre_archivo) VALUES('$titulo','$descri','$tamanio','$tipo','$nombre')";
-			$query = $db->execute($sql);
-			if($query){
-				echo "Se guardo correctamente";
-			}
-		} else {
-			echo "Error";
-		}
-	}
-}
-
-
+$id = $_POST['id'];
 //Form to add a project, in the form its necessary to complete with the name of the project, phone, quantity of money, details of the project
-echo'<form action="aviso_satis.php" method="post" enctype="multipart/form-data">
-<table>
-
-		
-	 <tr><td></td><td><input type="submit"    value="Contactar" /></td></tr>
-		
-
-		</table>';
- 
+$ServerName="localhost";
+$UserName="root";
+$Password="";
+$DBname="moodle";
+$Conn = new mysqli($ServerName,$UserName,$Password,$DBname);
+$Sql1="SELECT `name`,`email`,`phone` FROM `mdl_add_project` WHERE `id` = $id";
+$Result1= $Conn->query($Sql1);
+while($Row = $Result1->fetch_assoc()){
+	$email= $Row["email"];
+	$name = $Row["name"];
+	$phone = $Row["phone"];
+}
+echo "<!DOCTYPE html>
+<html lang='en'>
+<meta charset='utf-8'>
+<meta name='viewport'' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js'></script>
+<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+<h3>Informacion de contacto para: $name</h3><br>
+<p>Email: $email</p>
+<br>
+<p>Telefono: $phone</p>
+</html>";
 
 
 
